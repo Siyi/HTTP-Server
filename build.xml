@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="HTTP-Server" default="start" basedir=".">
+   	
+	<property name="lib" value="lib/"/>
+	<property name="src" value="src/"/>
+	<property name="bin" value="classes/"/>
+	
+	<path id="classpath">
+	  <fileset dir="${lib}">
+		  <include name="**/*.jar"/>
+	  </fileset>
+	  <pathelement location="${bin}"/>
+	</path>
+	
+	<target name="clean">
+	  <delete dir="${bin}"/>
+	</target>
+	
+	<target name="build">
+	  <mkdir dir="${bin}"/>
+	  <javac srcdir="${src}" destdir="${bin}" debug="true" includeantruntime="true">
+	    <classpath refid="classpath" />
+	    <compilerarg value="-g"/>
+	  </javac>
+	</target>
+	
+	<target name="start" depends="clean, build">
+			
+        <java classname="server.TinyHttp"  fork="true">
+	    <classpath refid="classpath" />
+        </java>
+
+	</target>
+	
+</project>
+
