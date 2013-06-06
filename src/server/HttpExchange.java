@@ -271,6 +271,8 @@ public class HttpExchange
 		System.out.println("Get Make response");
 		try
 		{
+			System.out.println("File requested: " + getRequestURIPath());
+			
 			File file = new File(getRequestURIPath());
 			int len = (int) file.length();
 			if (!file.exists())

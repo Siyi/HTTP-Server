@@ -1,6 +1,7 @@
 package server;
 
-import it.sauronsoftware.base64.Base64;
+import org.apache.commons.codec.binary.Base64;
+
 
 public class BasicAuthenticator extends Authenticator
 {
@@ -35,7 +36,7 @@ public class BasicAuthenticator extends Authenticator
 		if (start > -1)
 		{	
 			result = credentials.substring(start + 21).trim();	
-			result = new String(Base64.decode(result));
+			result = new String(new Base64().decode(result));
 		}
 		
 		System.out.println("Credentials: " +result);
